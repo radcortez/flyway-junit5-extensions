@@ -1,3 +1,5 @@
+[![Build](https://github.com/radcortez/flyway-junit5-extensions/workflows/Build/badge.svg)](https://github.com/radcortez/flyway-junit5-extensions/actions?query=workflow%3ABuild)
+
 # Flyway JUnit 5 Extensions
 
 This extensions allows you to clean / migrate your database using Flyway during testing.
