@@ -49,7 +49,7 @@ class JUnit5Test {
 
 }
 
-static class H2DatasourceProvider implements ` {
+static class H2DatasourceProvider implements DatasourceProvider {
     @Override
     public DatasourceInfo getDatasourceInfo(final ExtensionContext extensionContext) {
         return DatasourceInfo.config("jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1");
