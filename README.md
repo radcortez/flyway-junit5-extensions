@@ -1,3 +1,4 @@
+[![License](https://img.shields.io/github/license/smallrye/smallrye-config.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build](https://github.com/radcortez/flyway-junit5-extensions/workflows/Build/badge.svg)](https://github.com/radcortez/flyway-junit5-extensions/actions?query=workflow%3ABuild)
 
 # Flyway JUnit 5 Extensions
