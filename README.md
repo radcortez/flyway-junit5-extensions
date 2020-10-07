@@ -13,7 +13,7 @@ Add the following dependency to your project:
 ```xml
 <dependency>
   <groupId>com.radcortez.flyway</groupId>
-  <artifactId>flyway-junit5-extensions</artifactId>
+  <artifactId>flyway-junit5-extension</artifactId>
   <version>1.0.0</version>
   <scope>test</scope>
 </dependency>
