@@ -185,6 +185,7 @@
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
               <serverId>oss.sonatype</serverId>
               <autoReleaseAfterClose>true</autoReleaseAfterClose>
+              <stagingProgressTimeoutMinutes>15</stagingProgressTimeoutMinutes>
             </configuration>
           </plugin>
         </plugins>
