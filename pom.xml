@@ -20,7 +20,7 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
 
     <plugin.version.source>3.2.1</plugin.version.source>
-    <plugin.version.surefire>3.0.0-M4</plugin.version.surefire>
+    <plugin.version.surefire>3.0.0-M5</plugin.version.surefire>
     <plugin.version.failsafe>3.0.0-M4</plugin.version.failsafe>
     <plugin.version.release>3.0.0-M1</plugin.version.release>
     <plugin.version.gpg>1.6</plugin.version.gpg>
