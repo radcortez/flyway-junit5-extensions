@@ -23,8 +23,8 @@ Add the following dependency to your project:
 **NOTE**: 
 
 This project depends on:
-- Flyway 6.4.2
-- JUnit Jupiter 5.6.2
+- Flyway 7.3.0
+- JUnit Jupiter 5.7.0
 
 ---
 
