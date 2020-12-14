@@ -31,7 +31,7 @@
     <dependency.version.h2>1.4.200</dependency.version.h2>
     <dependency.version.postgre>42.2.18</dependency.version.postgre>
     <dependency.version.jooq>3.14.4</dependency.version.jooq>
-    <dependency.version.test-containers>1.15.0</dependency.version.test-containers>
+    <dependency.version.test-containers>1.15.1</dependency.version.test-containers>
     <dependency.version.slf4j>1.7.30</dependency.version.slf4j>
 
     <!-- Examples -->
