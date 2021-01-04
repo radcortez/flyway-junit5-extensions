@@ -14,7 +14,7 @@ Add the following dependency to your project:
 <dependency>
   <groupId>com.radcortez.flyway</groupId>
   <artifactId>flyway-junit5-extension</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <scope>test</scope>
 </dependency>
 ```
