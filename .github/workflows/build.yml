@@ -32,3 +32,17 @@ jobs:
 
       - name: build with maven
         run: mvn verify
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: checkout
+
+      - uses: actions/setup-java@v1
+        name: set up jdk 11
+        with:
+          java-version: 11
+
+      - name: build with maven
+        run: mvn verify
