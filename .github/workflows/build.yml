@@ -45,4 +45,5 @@ jobs:
           java-version: 11
 
       - name: build with maven
-        run: mvn verify
+        # Skip integration tests. TestContainers does not support Windows Server 2019: https://github.com/testcontainers/testcontainers-java/issues/2960
+        run: mvn test
