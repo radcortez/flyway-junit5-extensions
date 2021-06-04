@@ -23,7 +23,7 @@
     <plugin.version.surefire>3.0.0-M5</plugin.version.surefire>
     <plugin.version.failsafe>3.0.0-M5</plugin.version.failsafe>
     <plugin.version.release>3.0.0-M4</plugin.version.release>
-    <plugin.version.gpg>1.6</plugin.version.gpg>
+    <plugin.version.gpg>3.0.1</plugin.version.gpg>
 
     <!-- Project -->
     <dependency.version.flyway>7.9.2</dependency.version.flyway>
