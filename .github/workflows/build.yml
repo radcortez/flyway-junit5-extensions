@@ -31,7 +31,7 @@ jobs:
           java-version: 11
 
       - name: build with maven
-        run: mvn verify
+        run: mvn verify -Pnative
 
   build-windows:
     runs-on: windows-latest
