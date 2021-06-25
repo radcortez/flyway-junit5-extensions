@@ -38,7 +38,7 @@
     <!-- Examples -->
     <dependency.version.lombok>1.18.20</dependency.version.lombok>
     <dependency.version.quarkus>1.13.7.Final</dependency.version.quarkus>
-    <dependency.version.spring>2.5.1</dependency.version.spring>
+    <dependency.version.spring>2.5.2</dependency.version.spring>
   </properties>
 
   <licenses>
