@@ -27,7 +27,7 @@
     <plugin.version.gpg>3.0.1</plugin.version.gpg>
 
     <!-- Project -->
-    <dependency.version.flyway>7.11.4</dependency.version.flyway>
+    <dependency.version.flyway>7.13.0</dependency.version.flyway>
     <dependency.version.junit>5.7.2</dependency.version.junit>
     <dependency.version.h2>1.4.200</dependency.version.h2>
     <dependency.version.postgre>42.2.23</dependency.version.postgre>
