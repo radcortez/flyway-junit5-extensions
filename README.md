@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/github/license/smallrye/smallrye-config.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Maven](https://img.shields.io/maven-central/v/com.radcortez.flyway/flyway-junit5-extension?color=green)](https://search.maven.org/artifact/com.radcortez.flyway/flyway-junit5-extension)
-[![Build](https://github.com/radcortez/flyway-junit5-extensions/workflows/Build/badge.svg)](https://github.com/radcortez/flyway-junit5-extensions/actions?query=workflow%3ABuild)
+[![Build](https://github.com/radcortez/flyway-junit5-extensions/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/radcortez/flyway-junit5-extensions/actions?query=workflow%3ABuild+branch%3Amain)
 
 # Flyway JUnit 5 Extensions
 
