@@ -52,10 +52,9 @@ public class FlywayExtension implements BeforeAllCallback, BeforeEachCallback, A
 
     private Flyway flyway(final FlywayTestConfiguration configuration, final ExtensionContext context) {
         final String packageName = context.getRequiredTestClass().getName();
-        final String testDefaultLocation = "db/" + packageName.replaceAll("\\.", Matcher.quoteReplacement(separator));
         final List<String> locations = new ArrayList<>(configuration.getLocations());
-        locations.add(testDefaultLocation);
-        locations.add("db" + separator + "migration");
+        locations.add("db/" + packageName.replaceAll("\\.", "/"));
+        locations.add("db/migration");
 
         return Flyway.configure()
                      .dataSource(configuration.getDatasourceInfo().getUrl(),
