@@ -36,7 +36,7 @@
     <dependency.version.slf4j>1.7.32</dependency.version.slf4j>
 
     <!-- Examples -->
-    <dependency.version.lombok>1.18.20</dependency.version.lombok>
+    <dependency.version.lombok>1.18.22</dependency.version.lombok>
     <dependency.version.quarkus>2.2.3.Final</dependency.version.quarkus>
     <dependency.version.spring>2.5.5</dependency.version.spring>
   </properties>
