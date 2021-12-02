@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @FlywayTest(value = @DataSource(PostgreIT.TestContainersDataSourceProvider.class))
 class PostgreIT {
     @Container
-    private static final JdbcDatabaseContainer POSTGRE_SQL_CONTAINER = new PostgreSQLContainer();
+    private static final JdbcDatabaseContainer<?> POSTGRE_SQL_CONTAINER = new PostgreSQLContainer<>("postgres:14.1");
 
     @Test
     void migrate() throws Exception {
