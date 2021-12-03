@@ -1,32 +1,44 @@
 package com.radcortez.flyway.test.junit;
 
-import com.radcortez.flyway.test.annotation.FlywayTest;
 import com.radcortez.flyway.test.annotation.DataSource;
+import com.radcortez.flyway.test.annotation.FlywayTest;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
+import org.junit.jupiter.api.extension.ExtensionContext.Store;
+import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
 import java.util.stream.Stream;
 
-import static java.io.File.separator;
 import static java.util.stream.Collectors.toList;
 import static org.junit.platform.commons.util.AnnotationUtils.findAnnotation;
 
-public class FlywayExtension implements BeforeAllCallback, BeforeEachCallback, AfterEachCallback {
+public class FlywayExtension implements TestInstancePostProcessor, BeforeAllCallback, BeforeEachCallback, AfterEachCallback {
+    static final Namespace FLYWAY_EXTENSION = Namespace.create(new Object());
+
+    @Override
+    public void postProcessTestInstance(final Object testInstance, final ExtensionContext context) {
+        context.getTestClass().flatMap(klass -> findAnnotation(klass, FlywayTest.class, true)).ifPresent(
+            flywayTest -> {
+                Store store = context.getStore(FLYWAY_EXTENSION);
+                store.put("flyway.flywayTest", flywayTest);
+            });
+    }
+
     @Override
     public void beforeAll(final ExtensionContext context) {
-        final Optional<FlywayTestConfiguration> configuration = findFlywayAnnnotation(context);
+        Optional<FlywayTestConfiguration> configuration = getConfiguration(context);
         if (configuration.isEmpty()) {
             return;
         }
 
-        final Flyway flyway = flyway(configuration.get(), context);
+        Flyway flyway = flyway(configuration.get(), context);
         if (configuration.get().isClean()) {
             flyway.clean();
         }
@@ -36,7 +48,7 @@ public class FlywayExtension implements BeforeAllCallback, BeforeEachCallback, A
 
     @Override
     public void beforeEach(final ExtensionContext context) {
-        findFlywayAnnnotation(context)
+        getConfiguration(context)
             .filter(FlywayTestConfiguration::isClean)
             .map(configuration -> flyway(configuration, context))
             .ifPresent(Flyway::migrate);
@@ -44,7 +56,7 @@ public class FlywayExtension implements BeforeAllCallback, BeforeEachCallback, A
 
     @Override
     public void afterEach(final ExtensionContext context) {
-        findFlywayAnnnotation(context)
+        getConfiguration(context)
             .filter(FlywayTestConfiguration::isClean)
             .map(configuration -> flyway(configuration, context))
             .ifPresent(Flyway::clean);
@@ -65,72 +77,97 @@ public class FlywayExtension implements BeforeAllCallback, BeforeEachCallback, A
                      .load();
     }
 
-    private Optional<FlywayTestConfiguration> findFlywayAnnnotation(final ExtensionContext context) {
-        final Optional<FlywayTest> classAnnotation =
-            context.getTestClass().flatMap(klass -> findAnnotation(klass, FlywayTest.class));
-        final Optional<FlywayTest> methodAnnotation =
-            context.getTestMethod().flatMap(klass -> findAnnotation(klass, FlywayTest.class));
+    private Optional<FlywayTestConfiguration> getConfiguration(final ExtensionContext context) {
+        List<FlywayTest> flywayAnnotations = findFlywayAnnotations(context);
 
-        if (Stream.of(classAnnotation, methodAnnotation).flatMap(Optional::stream).findAny().isEmpty()) {
+        if (flywayAnnotations.isEmpty()) {
             return Optional.empty();
         }
 
         final String url =
-            Stream.of(methodAnnotation, classAnnotation)
-                  .flatMap(Optional::stream)
-                  .map(FlywayTest::value)
-                  .map(DataSource::url)
-                  .filter(FlywayExtension::isNotEmpty)
-                  .findFirst()
-                  .orElse("");
+            flywayAnnotations
+                .stream()
+                .map(FlywayTest::value)
+                .map(DataSource::url)
+                .filter(FlywayExtension::isNotEmpty)
+                .findFirst()
+                .orElse("");
 
         final String username =
-            Stream.of(methodAnnotation, classAnnotation)
-                  .flatMap(Optional::stream)
-                  .map(FlywayTest::value)
-                  .map(DataSource::username)
-                  .filter(FlywayExtension::isNotEmpty)
-                  .findFirst()
-                  .orElse("");
+            flywayAnnotations
+                .stream()
+                .map(FlywayTest::value)
+                .map(DataSource::username)
+                .filter(FlywayExtension::isNotEmpty)
+                .findFirst()
+                .orElse("");
 
         final String password =
-            Stream.of(methodAnnotation, classAnnotation)
-                  .flatMap(Optional::stream)
-                  .map(FlywayTest::value)
-                  .map(DataSource::password)
-                  .filter(FlywayExtension::isNotEmpty)
-                  .findFirst()
-                  .orElse("");
+            flywayAnnotations
+                .stream()
+                .map(FlywayTest::value)
+                .map(DataSource::password)
+                .filter(FlywayExtension::isNotEmpty)
+                .findFirst()
+                .orElse("");
 
         final List<String> locations =
-            Stream.of(methodAnnotation, classAnnotation)
-                  .flatMap(Optional::stream)
-                  .map(FlywayTest::additionalLocations)
-                  .flatMap(Stream::of).collect(toList());
+            flywayAnnotations
+                .stream()
+                .map(FlywayTest::additionalLocations)
+                .flatMap(Stream::of).collect(toList());
 
         final Boolean clean =
-            Stream.of(methodAnnotation, classAnnotation)
-                  .flatMap(Optional::stream)
-                  .map(FlywayTest::clean)
-                  .findFirst()
-                  .orElse(true);
+            flywayAnnotations
+                .stream()
+                .map(FlywayTest::clean)
+                .findFirst()
+                .orElse(true);
 
         final DataSourceInfo datasourceInfo =
-            Stream.of(methodAnnotation, classAnnotation)
-                  .flatMap(Optional::stream)
-                  .map(FlywayTest::value)
-                  .map(DataSource::value)
-                  .map(FlywayExtension::newDatasourceProvider)
-                  .filter(provider -> !(provider instanceof DataSource.DEFAULT))
-                  .map(provider -> provider.getDatasourceInfo(context))
-                  .findFirst()
-                  .orElse(DataSourceInfo.config(url, username, password));
+            flywayAnnotations
+                .stream()
+                .map(FlywayTest::value)
+                .map(DataSource::value)
+                .map(FlywayExtension::newDatasourceProvider)
+                .filter(provider -> !(provider instanceof DataSource.DEFAULT))
+                .map(provider -> provider.getDatasourceInfo(context))
+                .findFirst()
+                .orElse(DataSourceInfo.config(url, username, password));
 
         if (datasourceInfo.getUrl() == null) {
             throw new IllegalStateException("No jdbc url provided.");
         }
 
         return Optional.of(FlywayTestConfiguration.flywayTestConfiguration(datasourceInfo, locations, clean));
+    }
+
+    private List<FlywayTest> findFlywayAnnotations(final ExtensionContext context) {
+        List<FlywayTest> flywayTestAnnotations = new ArrayList<>();
+
+        // Method
+        context.getTestMethod().flatMap(klass -> findAnnotation(klass, FlywayTest.class)).ifPresent(flywayTestAnnotations::add);
+
+        // Main Class or Nested Class
+        findFlywayAnnotation(context).ifPresent(flywayTestAnnotations::add);
+
+        // Enclosing Class
+        Optional<ExtensionContext> parentContext = context.getParent();
+        while (parentContext.isPresent()) {
+            findFlywayAnnotation(parentContext.get()).ifPresent(flywayTestAnnotations::add);
+            parentContext = parentContext.get().getParent();
+        }
+
+        return flywayTestAnnotations;
+    }
+
+    private Optional<FlywayTest> findFlywayAnnotation(final ExtensionContext context) {
+        final FlywayTest flywayTest = context.getStore(FLYWAY_EXTENSION).get("flyway.flywayTest", FlywayTest.class);
+        if (flywayTest != null) {
+            return Optional.of(flywayTest);
+        }
+
+        return context.getTestClass().flatMap(klass -> findAnnotation(klass, FlywayTest.class, true));
     }
 
     private static DataSourceProvider newDatasourceProvider(final Class<? extends DataSourceProvider> klass) {
