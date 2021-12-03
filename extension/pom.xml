@@ -42,7 +42,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>${dependency.version.postgre}</version>
+      <version>${dependency.version.postgres}</version>
       <scope>test</scope>
     </dependency>
 
