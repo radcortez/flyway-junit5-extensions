@@ -9,7 +9,7 @@
 
   <name>Flyway JUnit5 - Parent</name>
   <description>Flyway JUnit5 Extension</description>
-  <url>https://radcortez.com/flyway-junit-extension</url>
+  <url>https://github.com/radcortez/flyway-junit5-extensions</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
