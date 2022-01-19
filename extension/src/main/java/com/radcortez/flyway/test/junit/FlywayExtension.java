@@ -174,7 +174,7 @@ public class FlywayExtension implements TestInstancePostProcessor, BeforeAllCall
         try {
             return klass.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(e);
         }
     }
 

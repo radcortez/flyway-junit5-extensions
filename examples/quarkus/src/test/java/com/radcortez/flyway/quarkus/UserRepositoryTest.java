@@ -12,6 +12,7 @@ import io.restassured.http.Header;
 import io.smallrye.config.PropertiesConfigSource;
 import io.smallrye.config.SmallRyeConfig;
 import io.smallrye.config.SmallRyeConfigBuilder;
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -71,21 +72,7 @@ class UserRepositoryTest {
     public static class QuarkusDataSourceProvider implements DataSourceProvider {
         @Override
         public DataSourceInfo getDatasourceInfo(final ExtensionContext extensionContext) {
-            // We don't have access to the Quarkus CL here, so we cannot use ConfigProvider.getConfig() to retrieve the same configuration.
-
-            URL properties = Thread.currentThread().getContextClassLoader().getResource("application.properties");
-            assert properties != null;
-
-            try {
-                SmallRyeConfig config = new SmallRyeConfigBuilder()
-                    .withSources(new PropertiesConfigSource(properties))
-                    .withProfile("test")
-                    .build();
-
-                return DataSourceInfo.config(config.getRawValue("quarkus.datasource.jdbc.url"));
-            } catch (IOException e) {
-                throw new IllegalStateException(e);
-            }
+            return DataSourceInfo.config(ConfigProvider.getConfig().getValue("quarkus.datasource.jdbc.url", String.class));
         }
     }
 }
