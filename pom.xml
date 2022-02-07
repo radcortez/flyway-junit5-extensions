@@ -30,7 +30,7 @@
     <dependency.version.flyway>8.4.2</dependency.version.flyway>
     <dependency.version.junit>5.8.2</dependency.version.junit>
     <dependency.version.h2>1.4.200</dependency.version.h2>
-    <dependency.version.postgres>42.3.1</dependency.version.postgres>
+    <dependency.version.postgres>42.3.2</dependency.version.postgres>
     <dependency.version.jooq>3.16.2</dependency.version.jooq>
     <dependency.version.test-containers>1.16.3</dependency.version.test-containers>
     <dependency.version.slf4j>1.7.35</dependency.version.slf4j>
