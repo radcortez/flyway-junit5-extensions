@@ -23,7 +23,7 @@ Add the following dependency to your project:
 **NOTE**: 
 
 This project depends on:
-- Flyway 8.2.0
+- Flyway 8.4.4
 - JUnit Jupiter 5.8.2
 
 ---
@@ -109,7 +109,7 @@ project to be able to use an H2 database:
 <dependency>
   <groupId>com.h2database</groupId>
   <artifactId>h2</artifactId>
-  <version>1.4.199</version>
+  <version>2.1.210</version>
   <scope>test</scope>
 </dependency>
 ```
