@@ -23,7 +23,7 @@
     <plugin.version.surefire>3.0.0-M7</plugin.version.surefire>
     <plugin.version.failsafe>3.0.0-M7</plugin.version.failsafe>
     <plugin.version.fabric8>0.39.1</plugin.version.fabric8>
-    <plugin.version.release>3.0.0-M5</plugin.version.release>
+    <plugin.version.release>3.0.0-M6</plugin.version.release>
     <plugin.version.gpg>3.0.1</plugin.version.gpg>
 
     <!-- Project -->
