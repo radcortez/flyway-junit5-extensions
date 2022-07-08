@@ -31,7 +31,7 @@
     <dependency.version.junit>5.8.2</dependency.version.junit>
     <dependency.version.h2>2.1.214</dependency.version.h2>
     <dependency.version.postgres>42.4.0</dependency.version.postgres>
-    <dependency.version.jooq>3.16.6</dependency.version.jooq>
+    <dependency.version.jooq>3.17.2</dependency.version.jooq>
     <dependency.version.test-containers>1.17.3</dependency.version.test-containers>
     <dependency.version.slf4j>1.7.36</dependency.version.slf4j>
 
