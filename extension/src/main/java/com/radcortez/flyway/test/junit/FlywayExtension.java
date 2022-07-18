@@ -67,6 +67,7 @@ public class FlywayExtension implements TestInstancePostProcessor, BeforeAllCall
 
     private Flyway flyway(final FlywayTestConfiguration configuration, final ExtensionContext context) {
         FluentConfiguration flywayConfiguration = Flyway.configure().loadDefaultConfigurationFiles().envVars();
+        flywayConfiguration.cleanDisabled(false);
 
         // Add locations
         List<Location> locations = new ArrayList<>(Arrays.asList(flywayConfiguration.getLocations()));
