@@ -4,11 +4,11 @@ import com.radcortez.flyway.test.annotation.DataSource;
 import com.radcortez.flyway.test.annotation.FlywayTest;
 import com.radcortez.flyway.test.junit.DataSourceInfo;
 import com.radcortez.flyway.test.junit.DataSourceProvider;
-import io.quarkus.test.junit.NativeImageTest;
+import io.quarkus.test.junit.QuarkusIntegrationTest;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 @FlywayTest(@DataSource(UserRepositoryIT.QuarkusDataSourceProvider.class))
-@NativeImageTest
+@QuarkusIntegrationTest
 public class UserRepositoryIT extends UserRepositoryTest {
     public static class QuarkusDataSourceProvider implements DataSourceProvider {
         @Override
