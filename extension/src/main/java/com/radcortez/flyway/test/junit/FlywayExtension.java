@@ -3,6 +3,8 @@ package com.radcortez.flyway.test.junit;
 import com.radcortez.flyway.test.annotation.DataSource;
 import com.radcortez.flyway.test.annotation.FlywayTest;
 import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.Location;
+import org.flywaydb.core.api.configuration.FluentConfiguration;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtensionContext.Store;
 import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -63,18 +66,27 @@ public class FlywayExtension implements TestInstancePostProcessor, BeforeAllCall
     }
 
     private Flyway flyway(final FlywayTestConfiguration configuration, final ExtensionContext context) {
-        final String packageName = context.getRequiredTestClass().getName();
-        final List<String> locations = new ArrayList<>(configuration.getLocations());
-        locations.add("db/" + packageName.replaceAll("\\.", "/"));
-        locations.add("db/migration");
+        FluentConfiguration flywayConfiguration = Flyway.configure().loadDefaultConfigurationFiles().envVars();
 
-        return Flyway.configure()
-                     .dataSource(configuration.getDatasourceInfo().getUrl(),
-                                 configuration.getDatasourceInfo().getUsername(),
-                                 configuration.getDatasourceInfo().getPassword())
-                     .connectRetries(120)
-                     .locations(locations.toArray(String[]::new))
-                     .load();
+        // Add locations
+        List<Location> locations = new ArrayList<>(Arrays.asList(flywayConfiguration.getLocations()));
+        locations.add(new Location("db/" + context.getRequiredTestClass().getName().replaceAll("\\.", "/")));
+        configuration.getLocations().stream().map(Location::new).forEach(locations::add);
+        flywayConfiguration.locations(locations.toArray(new Location[]{}));
+
+        // Datasource
+        if (configuration.getDatasourceInfo().getUrl() != null) {
+            flywayConfiguration.dataSource(
+                configuration.getDatasourceInfo().getUrl(),
+                configuration.getDatasourceInfo().getUsername(),
+                configuration.getDatasourceInfo().getPassword());
+        }
+
+        if (flywayConfiguration.getConnectRetries() == 0) {
+            flywayConfiguration.connectRetries(120);
+        }
+
+        return flywayConfiguration.load();
     }
 
     private Optional<FlywayTestConfiguration> getConfiguration(final ExtensionContext context) {
@@ -91,7 +103,7 @@ public class FlywayExtension implements TestInstancePostProcessor, BeforeAllCall
                 .map(DataSource::url)
                 .filter(FlywayExtension::isNotEmpty)
                 .findFirst()
-                .orElse("");
+                .orElse(null);
 
         final String username =
             flywayAnnotations
@@ -100,7 +112,7 @@ public class FlywayExtension implements TestInstancePostProcessor, BeforeAllCall
                 .map(DataSource::username)
                 .filter(FlywayExtension::isNotEmpty)
                 .findFirst()
-                .orElse("");
+                .orElse(null);
 
         final String password =
             flywayAnnotations
@@ -109,7 +121,7 @@ public class FlywayExtension implements TestInstancePostProcessor, BeforeAllCall
                 .map(DataSource::password)
                 .filter(FlywayExtension::isNotEmpty)
                 .findFirst()
-                .orElse("");
+                .orElse(null);
 
         final List<String> locations =
             flywayAnnotations
@@ -134,10 +146,6 @@ public class FlywayExtension implements TestInstancePostProcessor, BeforeAllCall
                 .map(provider -> provider.getDatasourceInfo(context))
                 .findFirst()
                 .orElse(DataSourceInfo.config(url, username, password));
-
-        if (datasourceInfo.getUrl() == null) {
-            throw new IllegalStateException("No jdbc url provided.");
-        }
 
         return Optional.of(FlywayTestConfiguration.flywayTestConfiguration(datasourceInfo, locations, clean));
     }

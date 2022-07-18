@@ -12,6 +12,7 @@
   <name>Flyway JUnit5 - Examples</name>
 
   <modules>
+    <module>jooq</module>
     <module>quarkus</module>
     <module>spring</module>
   </modules>
