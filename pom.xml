@@ -33,7 +33,7 @@
     <dependency.version.postgres>42.5.0</dependency.version.postgres>
     <dependency.version.jooq>3.16.6</dependency.version.jooq>
     <dependency.version.test-containers>1.17.3</dependency.version.test-containers>
-    <dependency.version.slf4j>2.0.0</dependency.version.slf4j>
+    <dependency.version.slf4j>2.0.2</dependency.version.slf4j>
 
     <!-- Examples -->
     <dependency.version.lombok>1.18.24</dependency.version.lombok>
