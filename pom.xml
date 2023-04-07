@@ -22,7 +22,7 @@
     <plugin.version.source>3.2.1</plugin.version.source>
     <plugin.version.surefire>3.0.0</plugin.version.surefire>
     <plugin.version.failsafe>3.0.0</plugin.version.failsafe>
-    <plugin.version.fabric8>0.42.0</plugin.version.fabric8>
+    <plugin.version.fabric8>0.42.1</plugin.version.fabric8>
     <plugin.version.release>3.0.0</plugin.version.release>
     <plugin.version.gpg>3.0.1</plugin.version.gpg>
 
