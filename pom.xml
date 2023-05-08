@@ -24,7 +24,7 @@
     <plugin.version.failsafe>3.0.0</plugin.version.failsafe>
     <plugin.version.fabric8>0.42.0</plugin.version.fabric8>
     <plugin.version.release>3.0.0</plugin.version.release>
-    <plugin.version.gpg>3.0.1</plugin.version.gpg>
+    <plugin.version.gpg>3.1.0</plugin.version.gpg>
 
     <!-- Project -->
     <dependency.version.flyway>9.16.3</dependency.version.flyway>
