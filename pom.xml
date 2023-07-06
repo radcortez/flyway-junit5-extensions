@@ -29,7 +29,7 @@
     <!-- Project -->
     <dependency.version.flyway>9.19.4</dependency.version.flyway>
     <dependency.version.junit>5.9.3</dependency.version.junit>
-    <dependency.version.h2>2.1.214</dependency.version.h2>
+    <dependency.version.h2>2.2.220</dependency.version.h2>
     <dependency.version.postgres>42.6.0</dependency.version.postgres>
     <dependency.version.jooq>3.16.6</dependency.version.jooq>
     <dependency.version.test-containers>1.18.3</dependency.version.test-containers>
