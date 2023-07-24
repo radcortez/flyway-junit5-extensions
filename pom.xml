@@ -22,6 +22,7 @@
     <plugin.version.source>3.3.0</plugin.version.source>
     <plugin.version.surefire>3.1.2</plugin.version.surefire>
     <plugin.version.failsafe>3.1.2</plugin.version.failsafe>
+    <plugin.version.install>3.1.1</plugin.version.install>
     <plugin.version.fabric8>0.43.0</plugin.version.fabric8>
     <plugin.version.release>3.0.1</plugin.version.release>
     <plugin.version.gpg>3.1.0</plugin.version.gpg>
@@ -38,8 +39,8 @@
 
     <!-- Examples -->
     <dependency.version.lombok>1.18.28</dependency.version.lombok>
-    <dependency.version.quarkus>2.16.6.Final</dependency.version.quarkus>
-    <dependency.version.spring>2.7.14</dependency.version.spring>
+    <dependency.version.quarkus>3.2.0.Final</dependency.version.quarkus>
+    <dependency.version.spring>3.1.0</dependency.version.spring>
   </properties>
 
   <licenses>
