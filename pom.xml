@@ -25,6 +25,7 @@
     <plugin.version.fabric8>0.43.0</plugin.version.fabric8>
     <plugin.version.release>3.0.1</plugin.version.release>
     <plugin.version.gpg>3.1.0</plugin.version.gpg>
+    <plugin.version.nexus>1.6.13</plugin.version.nexus>
 
     <!-- Project -->
     <dependency.version.flyway>9.19.4</dependency.version.flyway>
@@ -75,19 +76,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>${plugin.version.source}</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -145,16 +133,18 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
+            <version>${plugin.version.source}</version>
             <executions>
               <execution>
                 <id>attach-sources</id>
                 <goals>
-                  <goal>jar-no-fork</goal>
+                  <goal>jar</goal>
                 </goals>
               </execution>
             </executions>
           </plugin>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <executions>
               <execution>
@@ -181,6 +171,7 @@
           <plugin>
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${plugin.version.nexus}</version>
             <extensions>true</extensions>
             <configuration>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
