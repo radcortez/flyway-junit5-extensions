@@ -21,7 +21,7 @@
 
     <plugin.version.source>3.3.0</plugin.version.source>
     <plugin.version.surefire>3.1.2</plugin.version.surefire>
-    <plugin.version.failsafe>3.1.2</plugin.version.failsafe>
+    <plugin.version.failsafe>3.2.1</plugin.version.failsafe>
     <plugin.version.install>3.1.1</plugin.version.install>
     <plugin.version.fabric8>0.43.0</plugin.version.fabric8>
     <plugin.version.release>3.0.1</plugin.version.release>
