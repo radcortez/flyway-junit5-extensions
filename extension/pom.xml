@@ -58,6 +58,13 @@
       <artifactId>testcontainers</artifactId>
       <version>${dependency.version.test-containers}</version>
       <scope>test</scope>
+      <exclusions>
+        <!-- jackson-annotations is being provided by flyway-core deeper into the graph tree with a newer version -->
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -78,6 +85,13 @@
       <groupId>org.testcontainers</groupId>
       <artifactId>postgresql</artifactId>
       <version>${dependency.version.test-containers}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-database-postgresql</artifactId>
+      <version>${dependency.version.flyway}</version>
       <scope>test</scope>
     </dependency>
 

@@ -29,13 +29,13 @@
     <plugin.version.nexus>1.6.13</plugin.version.nexus>
 
     <!-- Project -->
-    <dependency.version.flyway>9.19.4</dependency.version.flyway>
+    <dependency.version.flyway>10.12.0</dependency.version.flyway>
     <dependency.version.junit>5.10.2</dependency.version.junit>
     <dependency.version.h2>2.2.224</dependency.version.h2>
     <dependency.version.postgres>42.6.0</dependency.version.postgres>
     <dependency.version.jooq>3.16.6</dependency.version.jooq>
     <dependency.version.test-containers>1.19.7</dependency.version.test-containers>
-    <dependency.version.slf4j>2.0.13</dependency.version.slf4j>
+    <dependency.version.slf4j>1.7.36</dependency.version.slf4j> <!-- Align with testcontainers -->
 
     <!-- Examples -->
     <dependency.version.lombok>1.18.32</dependency.version.lombok>
