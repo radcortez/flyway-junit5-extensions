@@ -14,7 +14,7 @@ Add the following dependency to your project:
 <dependency>
   <groupId>com.radcortez.flyway</groupId>
   <artifactId>flyway-junit5-extension</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
   <scope>test</scope>
 </dependency>
 ```
@@ -23,8 +23,8 @@ Add the following dependency to your project:
 **NOTE**: 
 
 This project depends on:
-- Flyway 9.14.4
-- JUnit Jupiter 5.9.3
+- Flyway 10.12.0
+- JUnit Jupiter 5.10.2
 
 ---
 
@@ -109,7 +109,7 @@ project to be able to use an H2 database:
 <dependency>
   <groupId>com.h2database</groupId>
   <artifactId>h2</artifactId>
-  <version>2.2.220</version>
+  <version>2.2.224</version>
   <scope>test</scope>
 </dependency>
 ```
