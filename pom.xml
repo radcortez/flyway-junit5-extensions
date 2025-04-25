@@ -24,7 +24,7 @@
     <plugin.version.surefire>3.5.3</plugin.version.surefire>
     <plugin.version.failsafe>3.5.3</plugin.version.failsafe>
     <plugin.version.install>3.1.4</plugin.version.install>
-    <plugin.version.fabric8>0.44.0</plugin.version.fabric8>
+    <plugin.version.fabric8>0.46.0</plugin.version.fabric8>
     <plugin.version.release>3.1.1</plugin.version.release>
     <plugin.version.gpg>3.2.7</plugin.version.gpg>
     <plugin.version.nexus>1.7.0</plugin.version.nexus>
