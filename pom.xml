@@ -27,7 +27,7 @@
     <plugin.version.fabric8>0.44.0</plugin.version.fabric8>
     <plugin.version.release>3.1.1</plugin.version.release>
     <plugin.version.gpg>3.2.7</plugin.version.gpg>
-    <plugin.version.nexus>1.6.13</plugin.version.nexus>
+    <plugin.version.nexus>1.7.0</plugin.version.nexus>
 
     <!-- Project -->
     <dependency.version.flyway>11.8.0</dependency.version.flyway>
