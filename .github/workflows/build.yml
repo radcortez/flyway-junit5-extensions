@@ -21,29 +21,37 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 17, 21 ]
+    name: build with jdk ${{matrix.java}}
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout
 
-      - uses: actions/setup-java@v1
-        name: set up jdk 17
+      - uses: actions/setup-java@v4
+        name: set up jdk ${{matrix.java}}
         with:
-          java-version: 17
+          distribution: 'temurin'
+          java-version: ${{matrix.java}}
+          cache: 'maven'
+          cache-dependency-path: '**/pom.xml'
 
       - name: build with maven
-        run: mvn verify -Pnative
+        run: mvn -B verify --file pom.xml -Pnative
 
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         name: checkout
 
-      - uses: actions/setup-java@v1
-        name: set up jdk 17
+      - uses: actions/setup-java@v4
+        name: set up jdk ${{matrix.java}}
         with:
-          java-version: 17
+          distribution: 'temurin'
+          java-version: ${{matrix.java}}
+          cache: 'maven'
+          cache-dependency-path: '**/pom.xml'
 
       - name: build with maven
         # Skip integration tests. TestContainers does not support Windows Server 2019: https://github.com/testcontainers/testcontainers-java/issues/2960
-        run: mvn test
+        run: mvn -B test --file pom.xml
