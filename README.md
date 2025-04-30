@@ -14,7 +14,7 @@ Add the following dependency to your project:
 <dependency>
   <groupId>com.radcortez.flyway</groupId>
   <artifactId>flyway-junit5-extension</artifactId>
-  <version>2.1.0</version>
+  <version>2.2.0</version>
   <scope>test</scope>
 </dependency>
 ```
@@ -23,8 +23,8 @@ Add the following dependency to your project:
 **NOTE**: 
 
 This project depends on:
-- Flyway 10.12.0
-- JUnit Jupiter 5.10.2
+- Flyway 11.8.0
+- JUnit Jupiter 5.11.4
 
 ---
 
