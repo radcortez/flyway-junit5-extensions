@@ -35,7 +35,7 @@
     <dependency.version.h2>2.3.232</dependency.version.h2>
     <dependency.version.postgres>42.7.6</dependency.version.postgres>
     <dependency.version.jooq>3.16.6</dependency.version.jooq>
-    <dependency.version.test-containers>1.21.0</dependency.version.test-containers>
+    <dependency.version.test-containers>1.21.1</dependency.version.test-containers>
     <dependency.version.slf4j>1.7.36</dependency.version.slf4j> <!-- Align with testcontainers -->
 
     <!-- Examples -->
