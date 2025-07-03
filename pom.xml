@@ -31,7 +31,7 @@
 
     <!-- Project -->
     <dependency.version.flyway>11.8.2</dependency.version.flyway>
-    <dependency.version.junit>5.11.4</dependency.version.junit>
+    <dependency.version.junit>5.13.2</dependency.version.junit>
     <dependency.version.h2>2.3.232</dependency.version.h2>
     <dependency.version.postgres>42.7.7</dependency.version.postgres>
     <dependency.version.jooq>3.16.6</dependency.version.jooq>
