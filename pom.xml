@@ -39,7 +39,7 @@
     <dependency.version.slf4j>1.7.36</dependency.version.slf4j> <!-- Align with testcontainers -->
 
     <!-- Examples -->
-    <dependency.version.lombok>1.18.38</dependency.version.lombok>
+    <dependency.version.lombok>1.18.40</dependency.version.lombok>
     <dependency.version.quarkus>3.23.0</dependency.version.quarkus>
     <dependency.version.spring>3.4.5</dependency.version.spring>
   </properties>
