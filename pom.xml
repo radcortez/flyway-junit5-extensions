@@ -22,7 +22,7 @@
     <plugin.version.source>3.3.1</plugin.version.source>
     <plugin.version.javadoc>3.11.2</plugin.version.javadoc>
     <plugin.version.surefire>3.5.3</plugin.version.surefire>
-    <plugin.version.failsafe>3.5.3</plugin.version.failsafe>
+    <plugin.version.failsafe>3.5.4</plugin.version.failsafe>
     <plugin.version.install>3.1.4</plugin.version.install>
     <plugin.version.fabric8>0.46.0</plugin.version.fabric8>
     <plugin.version.release>3.1.1</plugin.version.release>
